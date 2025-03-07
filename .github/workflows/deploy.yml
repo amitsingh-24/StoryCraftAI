@@ -50,5 +50,6 @@ jobs:
           git config --global user.name "$GIT_USER_NAME"
           git add .
           git commit -m "Deploy update via GitHub Actions" || echo "No changes to commit"
-          git push https://$HF_TOKEN@huggingface.co/spaces/$HF_SPACE main
+          git push https://$HF_TOKEN@huggingface.co/spaces/$HF_SPACE.git main
+
 
