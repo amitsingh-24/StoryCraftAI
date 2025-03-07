@@ -42,6 +42,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_SPACE: "asr24/StoryCraftAI"
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
           GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
           GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
         run: |
@@ -51,7 +52,8 @@ jobs:
           git config --global user.name "$GIT_USER_NAME"
           git add .
           git commit -m "Deploy update via GitHub Actions" || echo "No changes to commit"
-          git push https://${HF_TOKEN}:@huggingface.co/spaces/${HF_SPACE}.git HEAD:main
+          git push https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}.git HEAD:main
+
 
 
 
