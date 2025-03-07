@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StoryCraft AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'SF Pro' ;
+      margin: 0;
+      background: #f4f7f8;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .navbar-brand { font-weight: 600; letter-spacing: 1px; }
+    .nav-link.active { font-weight: 600; }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 50px; /* Added spacing */
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+    .hero a.btn {
+      border-radius: 25px;
+      font-weight: 600;
+    }
+    /* Cards styling */
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      margin-bottom: 30px;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card-header-custom {
+      background-color: #764ba2;
+      color: #fff;
+      font-size: 1.25rem;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      padding: 15px;
+    }
+    .card-header-custom-alt {
+      background-color: #667eea;
+      color: #fff;
+      font-size: 1.25rem;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      padding: 15px;
+    }
+    /* Form and output areas */
+    textarea, input, select { border-radius: 5px; }
+    button { border-radius: 25px; font-weight: 600; transition: background 0.3s; }
+    button:hover { opacity: 0.9; }
+    #storyOutput {
+      min-height: 120px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    /* Canvas styling */
+    canvas {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    /* Footer styling */
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="80">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="navbarNav">
+    <a class="navbar-brand" href="#hero">StoryCraft AI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#aboutCard">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#storySection">Story Generation</a></li>
+        <li class="nav-item"><a class="nav-link" href="#modelsCard">Models Training Graphs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#modelsDownload">Models</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/yourusername/yourrepo" target="_blank">GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <h1>StoryCraft AI - Infinite Possibilities in Every Story</h1>
+    <p>Select a model, enter your seed text, and generate a creative story that inspires your imagination.</p>
+    <a href="#storySection" class="btn btn-light btn-lg">Get Started</a>
+  </section>
+
+
+  
+  <!-- Main Content -->
+  <div class="container" >
+
+  <!-- About Card -->
+  <div class="card" id="aboutCard">
+    <div class="card-header card-header-custom-alt">About</div>
+    <div class="card-body">
+      <p>
+        Welcome to <strong>StoryCraft AI – Infinite Possibilities in Every Story</strong> – a cutting-edge platform where boundless creativity meets advanced deep learning. Our website is the result of countless hours of research and development, training powerful deep learning models from scratch to generate compelling, creative stories. We leverage the power of GRU, LSTM, Bidirectional-GRU, and Bidirectional-LSTM architectures to bring you an interactive experience that transforms your seed text into imaginative narratives.
+      </p>
+      <p>At StoryCraft AI, you can:</p>
+      <ul>
+        <li><strong>Choose Your Model:</strong> Select from a range of meticulously trained models, each offering its unique style of story generation.</li>
+        <li><strong>Visualize the Journey:</strong> Dive into detailed training history graphs that showcase the evolution of our models.</li>
+        <li><strong>Access the Source:</strong> Download model files and view the underlying code to understand the technology behind our creative engine.</li>
+        <li><strong>Experience Innovation:</strong> Enjoy a premium, fully interactive interface designed to spark your creativity and inspire new ideas.</li>
+      </ul>
+      <p>
+        Our commitment to excellence and transparency means we not only deliver exceptional stories but also share the full depth of our development process. Join us on this journey where technology and imagination come together to unlock infinite possibilities in storytelling.
+      </p>
+    </div>
+  </div>
+
+
+    <!-- Story Generation Form -->
+    <div class="card" id="storySection">
+      <div class="card-header card-header-custom">Story Generation</div>
+      <div class="card-body">
+        <form id="storyForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="modelSelect">Choose a Model</label>
+              <select class="form-control" id="modelSelect">
+                <option value="GRU">GRU</option>
+                <option value="LSTM">LSTM</option>
+                <option value="Bidirectional-GRU">Bidirectional - GRU</option>
+                <option value="Bidirectional-LSTM">Bidirectional - LSTM</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="numWords">Number of Words</label>
+              <input type="number" class="form-control" id="numWords" value="100" min="10" max="500">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="seedText">Seed Text</label>
+            <textarea class="form-control" id="seedText" rows="5" placeholder="Enter your seed text here...">On Christmas Eve around 1978, when I was a young boy, after having the traditional pastry and cookies and after having sung around the fire, I, with my sister, my mother and my aunts, and Emma Jackman's car and then later</textarea>
+          </div>
+          <button type="button" id="generateBtn" class="btn btn-success btn-block">Generate Story</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Story Output -->
+    <div class="card">
+      <div class="card-header card-header-custom-alt">Generated Story</div>
+      <div class="card-body">
+        <div id="storyOutput"></div>
+        <div class="mt-3">
+          <button id="copyBtn" class="btn btn-primary">Copy Story</button>
+          <button id="downloadBtn" class="btn btn-secondary">Download Story</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Model Training History Graphs -->
+    <div class="card" id="modelsCard">
+      <div class="card-header card-header-custom">Model Training History Graphs</div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="graphModelSelect">Select Model to View Graphs</label>
+          <select class="form-control" id="graphModelSelect">
+            <option value="GRU">GRU</option>
+            <option value="LSTM">LSTM</option>
+            <option value="Bidirectional-GRU">Bidirectional - GRU</option>
+            <option value="Bidirectional-LSTM">Bidirectional - LSTM</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Loss</h4>
+            <canvas id="lossChart" width="400" height="300"></canvas>
+          </div>
+          <div class="col-md-6">
+            <h4>Accuracy</h4>
+            <canvas id="accuracyChart" width="400" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Available Models Card (with dropdown for download and code) -->
+    <div class="card" id="modelsDownload">
+      <div class="card-header card-header-custom-alt">Available Models</div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="downloadModelSelect">Select a Model</label>
+          <select class="form-control" id="downloadModelSelect">
+            <option value="GRU">GRU</option>
+            <option value="LSTM">LSTM</option>
+            <option value="Bidirectional-GRU">Bidirectional-GRU</option>
+            <option value="Bidirectional-LSTM">Bidirectional-LSTM</option>
+          </select>
+        </div>
+        <div class="mt-3">
+          <button id="downloadModelBtn" class="btn btn-primary">Download Model</button>
+          <button id="seeCodeBtn" class="btn btn-outline-secondary">See Code</button>
+        </div>
+      </div>
+    </div>
+
+<!-- FAQ Section with Mathematical Details -->
+<section id="faq" class="my-5">
+  <div class="card">
+    <div class="card-header card-header-custom-alt">
+      <h3 class="mb-0">Frequently Asked Questions</h3>
+    </div>
+    <div class="card-body">
+      <div id="faqAccordion">
+        <!-- FAQ Item 1 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                How is the sequence length determined and why did you choose 50 input words with 1 output word?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseOne" class="collapse show" aria-labelledby="faqHeadingOne" data-parent="#faqAccordion">
+            <div class="card-body">
+              We form training sequences by sliding a window over the tokenized text. Each sequence contains 51 tokens: the first 50 tokens are used as input (X) and the 51st token is the target (y). Mathematically, if T = [t₁, t₂, ..., tₙ] is the tokenized text, then for each valid index i (i ≥ 51), the sequence Sᵢ = [tᵢ₋₅₀, ..., tᵢ₋₁, tᵢ]. This fixed window size is a trade-off: a longer context may capture more dependencies but increases model complexity and computational cost.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 2 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                How is the vocabulary size computed and why do you add 1 to it?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseTwo" class="collapse" aria-labelledby="faqHeadingTwo" data-parent="#faqAccordion">
+            <div class="card-body">
+              The vocabulary size is computed as the number of unique words in the training set plus one (i.e., <code>vocabulary_size = len(tokenizer.word_index) + 1</code>). This addition accounts for the fact that word indices typically start at 1 (with 0 reserved for padding), ensuring that every word has a unique index. This size defines the dimensions of both the embedding layer (input_dim) and the output layer of the network.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 3 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                What is the mathematical role of one-hot encoding in training the model?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseThree" class="collapse" aria-labelledby="faqHeadingThree" data-parent="#faqAccordion">
+            <div class="card-body">
+              One-hot encoding transforms each target word into a binary vector with length equal to the vocabulary size. For example, if a word has index i, its one-hot encoded vector is all zeros except for a 1 in the i-th position. Mathematically, this allows us to use the categorical crossentropy loss function, defined as <code>L = -Σ (y_true * log(y_pred))</code>, to measure the divergence between the predicted probability distribution (from the softmax layer) and the true distribution.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 4 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingFour">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseFour" aria-expanded="false" aria-controls="faqCollapseFour">
+                Why did you choose categorical crossentropy as the loss function, mathematically speaking?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseFour" class="collapse" aria-labelledby="faqHeadingFour" data-parent="#faqAccordion">
+            <div class="card-body">
+              Categorical crossentropy is ideal for multi-class classification problems like next-word prediction. It calculates the loss as <code>L = -Σ y_true<sub>i</sub> * log(y_pred<sub>i</sub>)</code> for each word in the vocabulary. This formulation penalizes predictions that diverge from the one-hot true label, effectively training the model to assign a higher probability to the correct next word.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 5 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingFive">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseFive" aria-expanded="false" aria-controls="faqCollapseFive">
+                How do dropout layers help prevent overfitting from a mathematical perspective?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseFive" class="collapse" aria-labelledby="faqHeadingFive" data-parent="#faqAccordion">
+            <div class="card-body">
+              Dropout works by randomly setting a fraction of input units to zero during each training iteration. Mathematically, if p is the dropout rate, each neuron is kept with probability (1 − p). This randomization forces the network to learn redundant representations and prevents the co-adaptation of neurons. It can be seen as training an ensemble of sub-models, which collectively reduce overfitting.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 6 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingSix">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseSix" aria-expanded="false" aria-controls="faqCollapseSix">
+                How do GRU and LSTM differ mathematically in handling sequence data?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseSix" class="collapse" aria-labelledby="faqHeadingSix" data-parent="#faqAccordion">
+            <div class="card-body">
+              GRU (Gated Recurrent Unit) uses update and reset gates to control the flow of information. Its core equations include:
+              <br><br>
+              <code>zₜ = σ(W<sub>z</sub>xₜ + U<sub>z</sub>hₜ₋₁)</code> (update gate) and <code>rₜ = σ(W<sub>r</sub>xₜ + U<sub>r</sub>hₜ₋₁)</code> (reset gate). Then, the candidate activation is computed as <code>h̃ₜ = tanh(Wxₜ + U(rₜ ⊙ hₜ₋₁))</code>, and the new hidden state is <code>hₜ = (1 - zₜ) ⊙ hₜ₋₁ + zₜ ⊙ h̃ₜ</code>.
+              <br><br>
+              In contrast, LSTM (Long Short-Term Memory) introduces three gates (input, forget, output) along with a cell state to manage information flow:
+              <br><br>
+              <code>iₜ = σ(W<sub>i</sub>xₜ + U<sub>i</sub>hₜ₋₁)</code>, <code>fₜ = σ(W<sub>f</sub>xₜ + U<sub>f</sub>hₜ₋₁)</code>, and <code>oₜ = σ(W<sub>o</sub>xₜ + U<sub>o</sub>hₜ₋₁)</code> control the input, forgetting, and output of information respectively, while the cell state is updated as <code>cₜ = fₜ ⊙ cₜ₋₁ + iₜ ⊙ tanh(Wc xₜ + Uc hₜ₋₁)</code>. These mathematical formulations allow LSTM to better capture long-range dependencies.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 7 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingSeven">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseSeven" aria-expanded="false" aria-controls="faqCollapseSeven">
+                How does bidirectional processing enhance the model's performance mathematically?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseSeven" class="collapse" aria-labelledby="faqHeadingSeven" data-parent="#faqAccordion">
+            <div class="card-body">
+              Bidirectional models process input sequences in both forward and backward directions. Mathematically, this means that for each time step, the hidden state is computed twice—once from past to future and once from future to past. The outputs are then concatenated (or summed), providing a richer representation that captures context from both directions. This dual perspective can improve prediction accuracy by incorporating more comprehensive contextual information.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 8 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingEight">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseEight" aria-expanded="false" aria-controls="faqCollapseEight">
+                What is the mathematical rationale behind using categorical crossentropy for next-word prediction?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseEight" class="collapse" aria-labelledby="faqHeadingEight" data-parent="#faqAccordion">
+            <div class="card-body">
+              Categorical crossentropy is used because it quantifies the difference between the predicted probability distribution and the true one-hot encoded vector. It is defined as:
+              <br><br>
+              <code>L = -∑ (y<sub>true</sub> * log(y<sub>pred</sub>))</code>
+              <br><br>
+              This loss function penalizes the model when the predicted probability for the correct word is low. By minimizing this loss during training, the model learns to assign higher probabilities to the correct next word.
+            </div>
+          </div>
+        </div>
+        <!-- FAQ Item 9 -->
+        <div class="card">
+          <div class="card-header" id="faqHeadingNine">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faqCollapseNine" aria-expanded="false" aria-controls="faqCollapseNine">
+                How does the model use gradient-based optimization to update its weights?
+              </button>
+            </h5>
+          </div>
+          <div id="faqCollapseNine" class="collapse" aria-labelledby="faqHeadingNine" data-parent="#faqAccordion">
+            <div class="card-body">
+              During training, the model uses backpropagation through time (BPTT) to compute gradients of the loss function with respect to its weights. Gradient descent (or a variant like Adam) updates the weights by moving them in the direction that minimizes the loss. Mathematically, for each weight w, the update rule is:
+              <br><br>
+              <code>w ← w - η * ∂L/∂w</code>
+              <br><br>
+              where η is the learning rate and ∂L/∂w is the gradient of the loss L with respect to w.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    
+  </div>
+  
+  <!-- Footer / Contact Section -->
+  <footer id="contact">
+    <p>&copy; 2025 StoryCraft AI | <a href="mailto:your.email@example.com" style="color: #fff;">Contact Me</a></p>
+  </footer>
+  
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <!-- Pass histories from Flask to JavaScript -->
+  <script>
+    var histories = {{ histories | tojson }};
+    
+    let lossChart, accuracyChart;
+    
+    function createCharts(modelName) {
+      const history = histories[modelName];
+      const epochs = Array.from({length: history.loss.length}, (_, i) => i + 1);
+      
+      const lossData = {
+        labels: epochs,
+        datasets: [{
+          label: 'Training Loss',
+          data: history.loss,
+          borderColor: 'red',
+          fill: false,
+        }]
+      };
+      
+      const accuracyData = {
+        labels: epochs,
+        datasets: [{
+          label: 'Training Accuracy',
+          data: history.accuracy ? history.accuracy : [],
+          borderColor: 'green',
+          fill: false,
+        }]
+      };
+      
+      if (lossChart) lossChart.destroy();
+      if (accuracyChart) accuracyChart.destroy();
+      
+      const lossCtx = document.getElementById("lossChart").getContext("2d");
+      lossChart = new Chart(lossCtx, {
+        type: 'line',
+        data: lossData,
+        options: {
+          responsive: true,
+          title: { display: true, text: modelName + ' Model Loss' },
+          scales: {
+            x: { title: { display: true, text: 'Epoch' } },
+            y: { title: { display: true, text: 'Loss' } }
+          }
+        }
+      });
+      
+      const accuracyCtx = document.getElementById("accuracyChart").getContext("2d");
+      accuracyChart = new Chart(accuracyCtx, {
+        type: 'line',
+        data: accuracyData,
+        options: {
+          responsive: true,
+          title: { display: true, text: modelName + ' Model Accuracy' },
+          scales: {
+            x: { title: { display: true, text: 'Epoch' } },
+            y: { title: { display: true, text: 'Accuracy' } }
+          }
+        }
+      });
+    }
+    
+    // Initialize charts with default model ("GRU")
+    createCharts("GRU");
+    document.getElementById("graphModelSelect").addEventListener("change", (e) => createCharts(e.target.value));
+    
+    // Update Navbar active class on click (for non-scrolling scenarios)
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        e.target.classList.add('active');
+      });
+    });
+    
+    // Story Generation Script
+    document.getElementById("generateBtn").addEventListener("click", async () => {
+      const seedText = document.getElementById("seedText").value;
+      const modelName = document.getElementById("modelSelect").value;
+      const numWords = document.getElementById("numWords").value;
+      const outputDiv = document.getElementById("storyOutput");
+      
+      outputDiv.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>';
+      
+      try {
+        const response = await fetch("/generate-story", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            seed_text: seedText,
+            num_words: parseInt(numWords),
+            model_name: modelName
+          })
+        });
+        if (!response.ok) throw new Error("Network response was not ok");
+        const data = await response.json();
+        outputDiv.textContent = data.generated_story;
+      } catch (error) {
+        outputDiv.innerHTML = '<p class="loading">Error generating story. Please try again later.</p>';
+        console.error("Error:", error);
+      }
+    });
+    
+    // Copy Story Button
+    document.getElementById("copyBtn").addEventListener("click", () => {
+      const storyText = document.getElementById("storyOutput").textContent;
+      navigator.clipboard.writeText(storyText).then(() => alert("Story copied to clipboard!"));
+    });
+    
+    // Download Story Button
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const storyText = document.getElementById("storyOutput").textContent;
+      const blob = new Blob([storyText], { type: "text/plain;charset=utf-8" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "generated_story.txt";
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+    
+    // Model Download/Code Section: Define URLs for each model.
+    const modelLinks = {
+      "GRU": {
+        download: "https://yourdomain.com/download/GRU.h5",
+        code: "https://github.com/yourusername/yourrepo/blob/main/GRU_code.py"
+      },
+      "LSTM": {
+        download: "https://yourdomain.com/download/LSTM.h5",
+        code: "https://github.com/yourusername/yourrepo/blob/main/LSTM_code.py"
+      },
+      "Bidirectional-GRU": {
+        download: "https://yourdomain.com/download/Bidirectional-GRU.h5",
+        code: "https://github.com/yourusername/yourrepo/blob/main/Bidirectional-GRU.py"
+      },
+      "Bidirectional-LSTM": {
+        download: "https://yourdomain.com/download/Bidirectional-LSTM.h5",
+        code: "https://github.com/yourusername/yourrepo/blob/main/Bidirectional-LSTM.py"
+      }
+    };
+    
+    // Update the download/see code buttons based on the selected model in dropdown.
+    document.getElementById("downloadModelBtn").addEventListener("click", () => {
+      const selectedModel = document.getElementById("downloadModelSelect").value;
+      window.open(modelLinks[selectedModel].download, "_blank");
+    });
+    
+    document.getElementById("seeCodeBtn").addEventListener("click", () => {
+      const selectedModel = document.getElementById("downloadModelSelect").value;
+      window.open(modelLinks[selectedModel].code, "_blank");
+    });
+  </script>
+</body>
+</html>
