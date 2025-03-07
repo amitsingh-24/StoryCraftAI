@@ -116,4 +116,4 @@ def generate_story_endpoint():
     return jsonify({"generated_story": generated_story})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=7860)
